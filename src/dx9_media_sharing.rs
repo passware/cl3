@@ -23,9 +23,10 @@
 pub use crate::constants::cl_dx9_media_sharing::*;
 pub use crate::constants::{CL_INVALID_VALUE, CL_SUCCESS};
 pub use crate::types::cl_dx9_media_sharing::*;
-#[cfg(feature = "cl_intel_dx9_media_sharing")]
-pub use crate::types::{cl_command_queue, cl_device_id, cl_event, cl_mem, cl_platform_id};
-pub use crate::types::{cl_context, cl_int, cl_mem_flags, cl_mem_object_type, cl_uint};
+pub use crate::types::{
+    cl_command_queue, cl_context, cl_device_id, cl_event, cl_int, cl_mem, cl_mem_flags,
+    cl_mem_object_type, cl_platform_id, cl_uint,
+};
 
 #[allow(unused_imports)]
 use libc::c_void;
