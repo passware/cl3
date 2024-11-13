@@ -18,9 +18,14 @@
 #![allow(non_camel_case_types)]
 #![allow(clippy::not_unsafe_ptr_arg_deref)]
 
-use crate::constants::*;
-#[cfg(feature = "dynamic_runtime")]
-use crate::types::*;
+pub use crate::constants::{
+    CL_CONTEXT_DEVICES, CL_CONTEXT_INTEROP_USER_SYNC, CL_CONTEXT_NUM_DEVICES, CL_CONTEXT_PLATFORM,
+    CL_CONTEXT_PROPERTIES, CL_CONTEXT_REFERENCE_COUNT, CL_INVALID_VALUE, CL_SUCCESS,
+};
+pub use crate::types::{
+    cl_context, cl_context_info, cl_context_properties, cl_device_id, cl_device_type, cl_int,
+    cl_uint,
+};
 
 use super::info_type::InfoType;
 use super::{api_info_size, api_info_value, api_info_vector};

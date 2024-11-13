@@ -18,11 +18,22 @@
 #![allow(non_camel_case_types, deprecated)]
 #![allow(clippy::not_unsafe_ptr_arg_deref, clippy::missing_safety_doc)]
 
-use crate::constants::*;
-#[cfg(feature = "dynamic_runtime")]
-use crate::{
-    constants::cl_gl::*,
-    types::{cl_gl::*, *},
+pub use crate::constants::cl_gl::{
+    CL_CGL_SHAREGROUP_KHR, CL_COMMAND_GL_FENCE_SYNC_OBJECT_KHR,
+    CL_CURRENT_DEVICE_FOR_GL_CONTEXT_KHR, CL_DEVICES_FOR_GL_CONTEXT_KHR, CL_EGL_DISPLAY_KHR,
+    CL_GLX_DISPLAY_KHR, CL_GL_CONTEXT_KHR, CL_GL_MIPMAP_LEVEL, CL_GL_NUM_SAMPLES,
+    CL_GL_OBJECT_BUFFER, CL_GL_OBJECT_RENDERBUFFER, CL_GL_OBJECT_TEXTURE1D,
+    CL_GL_OBJECT_TEXTURE1D_ARRAY, CL_GL_OBJECT_TEXTURE2D, CL_GL_OBJECT_TEXTURE2D_ARRAY,
+    CL_GL_OBJECT_TEXTURE3D, CL_GL_OBJECT_TEXTURE_BUFFER, CL_GL_TEXTURE_TARGET, CL_KHR_GL_SHARING,
+    CL_WGL_HDC_KHR,
+};
+pub use crate::constants::{CL_INVALID_VALUE, CL_SUCCESS};
+pub use crate::types::cl_gl::{
+    cl_GLsync, cl_gl_context_info, cl_gl_object_type, cl_gl_platform_info, cl_gl_texture_info,
+};
+pub use crate::types::{
+    cl_GLenum, cl_GLint, cl_GLuint, cl_command_queue, cl_context, cl_context_properties, cl_event,
+    cl_int, cl_mem, cl_mem_flags, cl_uint,
 };
 
 use super::info_type::InfoType;

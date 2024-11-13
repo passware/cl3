@@ -16,10 +16,12 @@
 
 #![allow(unused_unsafe)]
 
-#[cfg(all(feature = "dynamic_runtime", feature = "cl_khr_egl_image"))]
-use crate::types::*;
-#[cfg(feature = "cl_khr_egl_image")]
-use crate::{constants::*, types::cl_egl::*};
+pub use crate::constants::cl_egl::*;
+pub use crate::constants::{CL_INVALID_VALUE, CL_SUCCESS};
+pub use crate::types::cl_egl::*;
+pub use crate::types::{
+    cl_command_queue, cl_context, cl_event, cl_int, cl_mem, cl_mem_flags, cl_uint,
+};
 
 #[allow(unused_imports)]
 use std::ptr;

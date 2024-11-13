@@ -19,10 +19,10 @@
 #![allow(unused_unsafe)]
 #![allow(clippy::missing_safety_doc)]
 
-#[cfg(feature = "cl_khr_d3d11_sharing")]
-use crate::constants::*;
-#[cfg(all(feature = "dynamic_runtime", feature = "cl_khr_d3d11_sharing"))]
-use crate::types::*;
+pub use crate::constants::cl_d3d11::*;
+pub use crate::constants::{CL_INVALID_VALUE, CL_SUCCESS};
+pub use crate::types::cl_d3d11::*;
+pub use crate::types::{cl_context, cl_int, cl_mem_flags, cl_mem_object_type, cl_uint};
 
 #[allow(unused_imports)]
 use libc::c_void;

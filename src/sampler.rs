@@ -18,9 +18,15 @@
 #![allow(non_camel_case_types, deprecated)]
 #![allow(clippy::not_unsafe_ptr_arg_deref, clippy::wildcard_in_or_patterns)]
 
-use crate::constants::*;
-#[cfg(feature = "dynamic_runtime")]
-use crate::types::*;
+pub use crate::constants::{
+    CL_INVALID_VALUE, CL_SAMPLER_ADDRESSING_MODE, CL_SAMPLER_CONTEXT, CL_SAMPLER_FILTER_MODE,
+    CL_SAMPLER_LOD_MAX, CL_SAMPLER_LOD_MIN, CL_SAMPLER_MIP_FILTER_MODE,
+    CL_SAMPLER_NORMALIZED_COORDS, CL_SAMPLER_PROPERTIES, CL_SAMPLER_REFERENCE_COUNT, CL_SUCCESS,
+};
+pub use crate::types::{
+    cl_addressing_mode, cl_bool, cl_context, cl_filter_mode, cl_int, cl_sampler, cl_sampler_info,
+    cl_sampler_properties, cl_uint, cl_ulong,
+};
 
 use super::info_type::InfoType;
 use super::{api_info_size, api_info_value, api_info_vector};
