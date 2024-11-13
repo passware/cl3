@@ -791,7 +791,7 @@ mod tests {
         }
 
         release_program(program).unwrap();
-        release_context(context).unwrap()
+        release_context(context).unwrap();
     }
 
     #[test]
