@@ -786,14 +786,12 @@ mod tests {
         };
 
         #[cfg(feature = "CL_VERSION_1_2")]
-        if let Err(e) = unsafe { unload_platform_compiler(platform_id) } {
+        if let Err(e) = unload_platform_compiler(platform_id) {
             println!("OpenCL error, clUnloadPlatformCompiler: {}", error_text(e));
         }
 
-        unsafe {
-            release_program(program).unwrap();
-            release_context(context).unwrap()
-        };
+        release_program(program).unwrap();
+        release_context(context).unwrap()
     }
 
     #[test]
@@ -849,21 +847,17 @@ mod tests {
         .unwrap();
 
         let programs = [program];
-        unsafe {
-            link_program(
-                context,
-                &device_ids,
-                &no_options,
-                &programs,
-                None,
-                ptr::null_mut(),
-            )
-            .unwrap()
-        };
+        link_program(
+            context,
+            &device_ids,
+            &no_options,
+            &programs,
+            None,
+            ptr::null_mut(),
+        )
+        .unwrap();
 
-        unsafe {
-            release_program(program).unwrap();
-            release_context(context).unwrap();
-        }
+        release_program(program).unwrap();
+        release_context(context).unwrap();
     }
 }

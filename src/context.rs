@@ -260,8 +260,6 @@ mod tests {
         println!("CL_CONTEXT_NUM_DEVICES: {}", value);
         assert!(0 < value);
 
-        unsafe {
-            release_context(context).unwrap();
-        }
+        release_context(context).unwrap();
     }
 }

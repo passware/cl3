@@ -734,10 +734,8 @@ mod tests {
             ),
         }
 
-        unsafe {
-            release_kernel(kernel).unwrap();
-            release_program(program).unwrap();
-            release_context(context).unwrap();
-        }
+        release_kernel(kernel).unwrap();
+        release_program(program).unwrap();
+        release_context(context).unwrap();
     }
 }

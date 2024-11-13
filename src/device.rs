@@ -2008,7 +2008,7 @@ mod tests {
             assert!(0 < sub_devices.len());
 
             for device in sub_devices {
-                unsafe { release_device(device).unwrap() };
+                release_device(device).unwrap();
             }
         } else {
             println!("OpenCL device capable of sub division not found");

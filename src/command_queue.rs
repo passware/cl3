@@ -1209,14 +1209,12 @@ mod tests {
         let context = create_context(&device_ids, ptr::null(), None, ptr::null_mut());
         let context = context.unwrap();
 
-        let queue = unsafe {
-            create_command_queue(
-                context,
-                device_id,
-                CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,
-            )
-            .unwrap()
-        };
+        let queue = create_command_queue(
+            context,
+            device_id,
+            CL_QUEUE_PROFILING_ENABLE | CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE,
+        )
+        .unwrap();
 
         let value = get_command_queue_info(queue, CL_QUEUE_CONTEXT).unwrap();
         let value = intptr_t::from(value);
@@ -1264,9 +1262,7 @@ mod tests {
             Err(e) => println!("OpenCL error, CL_QUEUE_PROPERTIES_ARRAY: {}", error_text(e)),
         };
 
-        unsafe {
-            release_command_queue(queue).unwrap();
-            release_context(context).unwrap();
-        }
+        release_command_queue(queue).unwrap();
+        release_context(context).unwrap();
     }
 }
