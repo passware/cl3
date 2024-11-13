@@ -130,9 +130,8 @@ use std::ptr;
 /// Calls clGetDeviceIDs to get the available device ids on the platform.
 ///  # Examples
 /// ```
-/// use cl3::constants::CL_DEVICE_TYPE_GPU;
 /// use cl3::platform::get_platform_ids;
-/// use cl3::device::get_device_ids;
+/// use cl3::device::{get_device_ids, CL_DEVICE_TYPE_GPU};
 ///
 /// let platform_ids = get_platform_ids().unwrap();
 /// assert!(0 < platform_ids.len());
@@ -209,9 +208,8 @@ pub fn get_device_data(
 /// Calls clGetDeviceInfo to get the desired information about the device.
 ///  # Examples
 /// ```
-/// use cl3::constants::{CL_DEVICE_TYPE, CL_DEVICE_TYPE_GPU, CL_DEVICE_VENDOR, CL_DEVICE_VERSION};
 /// use cl3::platform::get_platform_ids;
-/// use cl3::device::{get_device_ids, get_device_info};
+/// use cl3::device::{get_device_ids, get_device_info, CL_DEVICE_TYPE, CL_DEVICE_TYPE_GPU, CL_DEVICE_VENDOR, CL_DEVICE_VERSION};
 /// use cl3::types::cl_ulong;
 ///
 /// let platform_ids = get_platform_ids().unwrap();
