@@ -118,8 +118,8 @@ pub fn create_context_from_type(
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn retain_context(context: cl_context) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clRetainContext(context)) };
+pub unsafe fn retain_context(context: cl_context) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clRetainContext(context));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -138,8 +138,8 @@ pub fn retain_context(context: cl_context) -> Result<(), cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn release_context(context: cl_context) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clReleaseContext(context)) };
+pub unsafe fn release_context(context: cl_context) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clReleaseContext(context));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -260,6 +260,6 @@ mod tests {
         println!("CL_CONTEXT_NUM_DEVICES: {}", value);
         assert!(0 < value);
 
-        release_context(context).unwrap();
+        unsafe { release_context(context).unwrap() };
     }
 }

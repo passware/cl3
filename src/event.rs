@@ -60,7 +60,6 @@ use std::ptr;
 ///
 /// returns an empty Result or the error code from the `OpenCL` C API function.
 #[inline]
-#[allow(unused_unsafe)]
 #[allow(clippy::cast_possible_truncation)]
 pub fn wait_for_events(events: &[cl_event]) -> Result<(), cl_int> {
     let status: cl_int =
@@ -140,8 +139,8 @@ pub fn create_user_event(context: cl_context) -> Result<cl_event, cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn retain_event(event: cl_event) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clRetainEvent(event)) };
+pub unsafe fn retain_event(event: cl_event) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clRetainEvent(event));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -160,8 +159,8 @@ pub fn retain_event(event: cl_event) -> Result<(), cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn release_event(event: cl_event) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clReleaseEvent(event)) };
+pub unsafe fn release_event(event: cl_event) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clReleaseEvent(event));
     if CL_SUCCESS == status {
         Ok(())
     } else {

@@ -150,8 +150,8 @@ pub fn clone_kernel(source_kernel: cl_kernel) -> Result<cl_kernel, cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn retain_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clRetainKernel(kernel)) };
+pub unsafe fn retain_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clRetainKernel(kernel));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -170,8 +170,8 @@ pub fn retain_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn release_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clReleaseKernel(kernel)) };
+pub unsafe fn release_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clReleaseKernel(kernel));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -192,14 +192,13 @@ pub fn release_kernel(kernel: cl_kernel) -> Result<(), cl_int> {
 ///
 /// This function is unsafe because arg must match the kernel argument.
 #[inline]
-pub fn set_kernel_arg(
+pub unsafe fn set_kernel_arg(
     kernel: cl_kernel,
     arg_index: cl_uint,
     arg_size: size_t,
     arg_value: *const c_void,
 ) -> Result<(), cl_int> {
-    let status: cl_int =
-        unsafe { cl_call!(clSetKernelArg(kernel, arg_index, arg_size, arg_value)) };
+    let status: cl_int = cl_call!(clSetKernelArg(kernel, arg_index, arg_size, arg_value));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -221,12 +220,12 @@ pub fn set_kernel_arg(
 /// This function is unsafe because arg must match the kernel argument.
 #[cfg(feature = "CL_VERSION_2_0")]
 #[inline]
-pub fn set_kernel_arg_svm_pointer(
+pub unsafe fn set_kernel_arg_svm_pointer(
     kernel: cl_kernel,
     arg_index: cl_uint,
     arg_ptr: *const c_void,
 ) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clSetKernelArgSVMPointer(kernel, arg_index, arg_ptr)) };
+    let status: cl_int = cl_call!(clSetKernelArgSVMPointer(kernel, arg_index, arg_ptr));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -249,20 +248,18 @@ pub fn set_kernel_arg_svm_pointer(
 /// This function is unsafe because param must match the kernel argument.
 #[cfg(feature = "CL_VERSION_2_0")]
 #[inline]
-pub fn set_kernel_exec_info(
+pub unsafe fn set_kernel_exec_info(
     kernel: cl_kernel,
     param_name: cl_kernel_exec_info,
     param_value_size: size_t,
     param_value: *const c_void,
 ) -> Result<(), cl_int> {
-    let status: cl_int = unsafe {
-        cl_call!(clSetKernelExecInfo(
-            kernel,
-            param_name,
-            param_value_size,
-            param_value
-        ))
-    };
+    let status: cl_int = cl_call!(clSetKernelExecInfo(
+        kernel,
+        param_name,
+        param_value_size,
+        param_value
+    ));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -734,8 +731,10 @@ mod tests {
             ),
         }
 
-        release_kernel(kernel).unwrap();
-        release_program(program).unwrap();
-        release_context(context).unwrap();
+        unsafe {
+            release_kernel(kernel).unwrap();
+            release_program(program).unwrap();
+            release_context(context).unwrap();
+        }
     }
 }

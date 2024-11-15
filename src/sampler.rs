@@ -125,8 +125,8 @@ pub fn create_sampler_with_properties(
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn retain_sampler(sampler: cl_sampler) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clRetainSampler(sampler)) };
+pub unsafe fn retain_sampler(sampler: cl_sampler) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clRetainSampler(sampler));
     if CL_SUCCESS == status {
         Ok(())
     } else {
@@ -145,8 +145,8 @@ pub fn retain_sampler(sampler: cl_sampler) -> Result<(), cl_int> {
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn release_sampler(sampler: cl_sampler) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clReleaseSampler(sampler)) };
+pub unsafe fn release_sampler(sampler: cl_sampler) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clReleaseSampler(sampler));
     if CL_SUCCESS == status {
         Ok(())
     } else {
