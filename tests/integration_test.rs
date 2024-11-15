@@ -117,7 +117,6 @@ fn test_opencl_1_2_example() {
         )
         .unwrap()
     };
-
     let y = unsafe {
         create_buffer(
             context,
