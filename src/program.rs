@@ -55,7 +55,6 @@ pub const CL_PROGRAM_SCOPE_GLOBAL_DTORS_PRESENT: cl_program_info = 0x116B;
 ///
 /// returns a Result containing the new `OpenCL` program object
 /// or the error code from the `OpenCL` C API function.
-
 #[allow(clippy::cast_possible_truncation)]
 #[inline]
 pub fn create_program_with_source(
@@ -94,7 +93,6 @@ pub fn create_program_with_source(
 /// # Safety
 ///
 /// This is unsafe when a device is not a member of context.
-
 #[allow(clippy::cast_possible_truncation)]
 pub unsafe fn create_program_with_binary(
     context: cl_context,
@@ -238,7 +236,6 @@ pub unsafe fn release_program(program: cl_program) -> Result<(), cl_int> {
 ///
 /// returns a Result containing the new `OpenCL` program object
 /// or the error code from the `OpenCL` C API function.
-
 #[allow(clippy::cast_possible_truncation)]
 #[inline]
 pub fn build_program(

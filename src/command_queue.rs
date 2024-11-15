@@ -134,8 +134,8 @@ pub unsafe fn create_command_queue_with_properties(
 ///
 /// This function is unsafe because it changes the `OpenCL` object reference count.
 #[inline]
-pub fn retain_command_queue(command_queue: cl_command_queue) -> Result<(), cl_int> {
-    let status: cl_int = unsafe { cl_call!(clRetainCommandQueue(command_queue)) };
+pub unsafe fn retain_command_queue(command_queue: cl_command_queue) -> Result<(), cl_int> {
+    let status: cl_int = cl_call!(clRetainCommandQueue(command_queue));
     if CL_SUCCESS == status {
         Ok(())
     } else {
